@@ -1,12 +1,13 @@
 const jwt = require('jsonwebtoken')
 
-function restrict () {
+function authenticate () {
   return async (req, res, next) => {
     const authErr = {
       message: "You shall not pass!"
     }
     try {
       const token = req.cookies.token
+      console.log(req.cookies.token)
       if(!token) {
         return res.status(401).json(authErr)
       }
@@ -24,4 +25,4 @@ function restrict () {
   }
 }
 
-module.exports = restrict;
+module.exports = authenticate;
